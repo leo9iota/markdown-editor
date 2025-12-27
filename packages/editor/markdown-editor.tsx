@@ -12,11 +12,8 @@ import { EditorContent, EditorContext, useEditor } from '@tiptap/react';
 import { StarterKit } from '@tiptap/starter-kit';
 
 import { HorizontalRule, ImageUploadNode } from './components';
-// import { loggers } from '@/lib/log/logger';
-
 // Hooks
-import { useIsMobile } from './hooks/use-mobile'; // Modular local hook
-
+import { useIsMobile } from './hooks/use-mobile';
 // Utilities
 import { handleImageUpload, MAX_FILE_SIZE } from './lib/utils';
 
