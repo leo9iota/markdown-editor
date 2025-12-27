@@ -3,20 +3,30 @@
     "version": "0.0.0",
     "private": true,
     "files": [
-        "library.js",
-        "next.js",
-        "react.js",
-        "base.js"
+        "base.mjs",
+        "library.mjs",
+        "next.mjs",
+        "react.mjs"
     ],
+    "exports": {
+        "./base": "./base.mjs",
+        "./library": "./library.mjs",
+        "./next": "./next.mjs",
+        "./react": "./react.mjs"
+    },
     "devDependencies": {
+        "@eslint/js": "^9.39.2",
+        "@next/eslint-plugin-next": "^16.1.1",
         "eslint-config-turbo": "^1.13.0",
         "eslint-config-next": "14.1.4",
         "eslint": "^8.57.0",
+        "globals": "^15.13.0",
         "typescript": "^5.4.5",
         "@typescript-eslint/parser": "^7.5.0",
         "@typescript-eslint/eslint-plugin": "^7.5.0",
         "eslint-config-prettier": "^9.1.0",
         "eslint-plugin-react": "^7.34.1",
-        "eslint-plugin-react-hooks": "^4.6.0"
+        "eslint-plugin-react-hooks": "^4.6.0",
+        "typescript-eslint": "^8.19.1"
     }
 }
