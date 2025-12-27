@@ -1,6 +1,6 @@
-# Tiptap Editor Component
+# Markdown Editor
 
-This is a modular Tiptap editor component designed to be dropped into any Next.js project.
+Markdown editor designed to be dropped into any Shadcn UI project.
 
 ## Installation
 
