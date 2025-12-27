@@ -98,14 +98,14 @@ export function MarkdownEditor({ value, onChange, placeholder }: MarkdownEditorP
     <div
       className={cn(
         'markdown-editor flex w-full min-w-0 flex-col overflow-hidden rounded-md',
-        'border border-input bg-transparent dark:bg-input/30',
-        'shadow-xs transition-[color,box-shadow] outline-none',
-        'focus-within:border-ring focus-within:ring-[3px] focus-within:ring-ring/50'
+        'border-input dark:bg-input/30 border bg-transparent',
+        'shadow-xs outline-none transition-[color,box-shadow]',
+        'focus-within:border-ring focus-within:ring-ring/50 focus-within:ring-[3px]'
       )}
     >
       <EditorContext.Provider value={{ editor }}>
         <MarkdownEditorToolbar
-          className='markdown-editor-toolbar rounded-t-md border-b border-input bg-muted/50 dark:bg-input/30'
+          className='markdown-editor-toolbar border-input bg-muted/50 dark:bg-input/30 rounded-t-md border-b'
           isMobile={isMobile}
         />
 

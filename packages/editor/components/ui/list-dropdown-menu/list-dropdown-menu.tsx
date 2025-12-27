@@ -20,7 +20,6 @@ import { ChevronDownIcon } from '../../../components/icons/chevron-down-icon';
 import { ListButton, type ListType } from '../../../components/ui/list-button';
 // --- Hooks ---
 import { useTiptapEditor } from '../../../hooks/use-tiptap-editor';
-
 import { useListDropdownMenu } from './use-list-dropdown-menu';
 
 export interface ListDropdownMenuProps extends Omit<ButtonProps, 'type'> {

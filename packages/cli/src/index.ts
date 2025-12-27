@@ -1,5 +1,6 @@
 #!/usr/bin/env node
 import { Command } from 'commander';
+
 import { add } from './commands/add';
 
 const program = new Command();

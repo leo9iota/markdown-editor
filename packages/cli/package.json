@@ -38,6 +38,7 @@
     "devDependencies": {
         "@types/node": "^20.12.7",
         "@types/prompts": "^2.4.9",
+        "@repo/eslint": "workspace:*",
         "tsup": "^8.0.2",
         "typescript": "^5.4.5"
     },

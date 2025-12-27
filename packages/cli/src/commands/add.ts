@@ -1,11 +1,13 @@
 import fs from 'node:fs';
 import path from 'node:path';
-import prompts from 'prompts';
-import ora from 'ora';
+
 import chalk from 'chalk';
 import { execa } from 'execa';
+import ora from 'ora';
+import prompts from 'prompts';
 import tiged from 'tiged';
-import { getPackageManager, getInstallCommand } from '../utils/package-manager';
+
+import { getInstallCommand, getPackageManager } from '../utils/package-manager';
 
 const REPO_URL = 'leo9iota/markdown-editor#main';
 
@@ -29,7 +31,7 @@ const DEPENDENCIES = [
     'clsx',
     'tailwind-merge',
     're-resizable',
-    'react-colorful',
+    'react-colorful'
 ];
 
 interface AddOptions {
@@ -49,7 +51,7 @@ export async function add(options: AddOptions) {
             type: 'text',
             name: 'path',
             message: 'Where would you like to install the component?',
-            initial: 'components/markdown-editor',
+            initial: 'components/markdown-editor'
         });
         installPath = response.path;
     }
@@ -67,7 +69,7 @@ export async function add(options: AddOptions) {
             type: 'confirm',
             name: 'overwrite',
             message: `Directory ${chalk.bold(installPath)} already exists. Overwrite?`,
-            initial: false,
+            initial: false
         });
         if (!response.overwrite) {
             console.log(chalk.yellow('Skipping installation.'));
@@ -85,7 +87,7 @@ export async function add(options: AddOptions) {
     try {
         const emitter = tiged(REPO_URL, {
             disableCache: true,
-            force: true,
+            force: true
         });
 
         await emitter.clone(tempDir);
@@ -140,7 +142,10 @@ export async function add(options: AddOptions) {
             for (const file of files) {
                 if (file.endsWith('.tsx') || file.endsWith('.ts')) {
                     if (file === 'markdown-editor.tsx' || file === 'markdown-editor-toolbar.tsx') {
-                        fs.copyFileSync(path.join(editorSourceDir, file), path.join(targetDir, file));
+                        fs.copyFileSync(
+                            path.join(editorSourceDir, file),
+                            path.join(targetDir, file)
+                        );
                     }
                 }
             }
@@ -172,7 +177,7 @@ export async function add(options: AddOptions) {
         } catch (err) {
             spinner.fail('Failed to install dependencies.');
             console.log(
-                chalk.yellow(`Please run: ${pm} ${getInstallCommand(pm, DEPENDENCIES).join(' ')}`),
+                chalk.yellow(`Please run: ${pm} ${getInstallCommand(pm, DEPENDENCIES).join(' ')}`)
             );
         }
     }
@@ -181,14 +186,14 @@ export async function add(options: AddOptions) {
     console.log(chalk.bold.green('\n✨ Installation Complete!'));
     console.log(`\nNext steps:`);
     console.log(
-        `1. Make sure your ${chalk.cyan('tailwind.config.ts/js')} includes the new content path:`,
+        `1. Make sure your ${chalk.cyan('tailwind.config.ts/js')} includes the new content path:`
     );
     console.log(
-        chalk.gray(`   content: [\n     "./${installPath}/**/*.{ts,tsx}",\n     ...\n   ]`),
+        chalk.gray(`   content: [\n     "./${installPath}/**/*.{ts,tsx}",\n     ...\n   ]`)
     );
     console.log(`2. Import and use the editor:`);
     console.log(
-        chalk.gray(`   import { MarkdownEditor } from '@/${installPath}/markdown-editor';`),
+        chalk.gray(`   import { MarkdownEditor } from '@/${installPath}/markdown-editor';`)
     );
     console.log('\nHappy coding! 🚀');
 }

@@ -1,0 +1,31 @@
+const { resolve } = require('node:path');
+
+const project = resolve(process.cwd(), 'tsconfig.json');
+
+/** @type {import("eslint").Linter.Config} */
+module.exports = {
+    extends: ['eslint-config-next/core-web-vitals', './base.js'],
+    parserOptions: {
+        project,
+    },
+    globals: {
+        React: true,
+        JSX: true,
+    },
+    env: {
+        node: true,
+        browser: true,
+    },
+    settings: {
+        'import/resolver': {
+            typescript: {
+                project,
+            },
+        },
+    },
+    overrides: [
+        {
+            files: ['*.js?(x)', '*.ts?(x)'],
+        },
+    ],
+};

@@ -13,7 +13,7 @@ export function getPackageManager(cwd: string = process.cwd()): PackageManager {
 export function getInstallCommand(
     pm: PackageManager,
     packages: string[],
-    dev: boolean = false,
+    dev: boolean = false
 ): string[] {
     if (pm === 'npm') return ['install', dev ? '-D' : '', ...packages].filter(Boolean);
     if (pm === 'yarn') return ['add', dev ? '-D' : '', ...packages].filter(Boolean);
