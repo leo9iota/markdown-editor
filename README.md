@@ -2,15 +2,6 @@
 
 A modular, production-ready markdown editor built with Tiptap and React. Designed to be easily integrated into any project via a Shadcn-style CLI installer.
 
-## Packages
-
-This monorepo contains:
-
-- **`@leo9iota/markdown-editor`** - The core markdown editor component
-- **`@leo9iota/markdown-editor-cli`** - CLI tool to install the editor into your project
-- **`@repo/eslint`** - Shared ESLint configuration for the monorepo
-- **`web`** - Documentation and demo site (Next.js 16 with App Router)
-
 ## Quick Start
 
 ### For Users
