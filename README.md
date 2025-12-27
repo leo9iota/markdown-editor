@@ -1,46 +1,100 @@
-# Markdown Editor
+# Markdown Editor Monorepo
 
-Markdown editor designed to be dropped into any Shadcn UI project.
+A modular, production-ready markdown editor built with Tiptap and React. Designed to be easily integrated into any project via a Shadcn-style CLI installer.
 
-## Installation
+## Packages
 
-1. Copy this entire `editor/` folder into your project's components directory (e.g., `src/components/editor`).
-2. Install the required dependencies:
+This monorepo contains:
+
+- **`@leo9iota/markdown-editor`** - The core markdown editor component
+- **`@leo9iota/markdown-editor-cli`** - CLI tool to install the editor into your project
+- **`@repo/eslint`** - Shared ESLint configuration for the monorepo
+- **`web`** - Documentation and demo site (Next.js 16 with App Router)
+
+## Quick Start
+
+### For Users
+
+Install the markdown editor into your project using the CLI:
 
 ```bash
-bun add @tiptap/react @tiptap/pm @tiptap/starter-kit \
-@tiptap/extension-highlight @tiptap/extension-image @tiptap/extension-link \
-@tiptap/extension-list @tiptap/extension-subscript @tiptap/extension-superscript \
-@tiptap/extension-text-align @tiptap/extension-typography \
-@radix-ui/react-dropdown-menu @radix-ui/react-popover @radix-ui/react-separator \
-@radix-ui/react-slot @radix-ui/react-toggle @radix-ui/react-tooltip \
-lucide-react class-variance-authority clsx tailwind-merge
+npx @leo9iota/markdown-editor-cli add
 ```
 
-## Usage
+The CLI will:
 
-```tsx
-import { useState } from 'react';
+- Copy the editor source code into your project
+- Detect your package manager (pnpm, npm, yarn, or bun)
+- Install required dependencies
+- Provide usage instructions
 
-import { MarkdownEditor } from '@/components/editor/markdown-editor';
+### For Contributors
 
-export default function MyPage() {
-    const [content, setContent] = useState('');
+```bash
+# Clone the repository
+git clone https://github.com/leo9iota/markdown-editor.git
+cd markdown-editor
 
-    return (
-        <div className='mx-auto max-w-4xl p-4'>
-            <MarkdownEditor value={content} onChange={setContent} placeholder='Start writing...' />
-        </div>
-    );
-}
+# Install dependencies
+pnpm install
+
+# Start development
+pnpm dev
+
+# Run linting
+pnpm lint
+
+# Format code
+pnpm format
+
+# Build all packages
+pnpm build
 ```
 
-## Styling
+### Project Structure
 
-The editor uses Tailwind CSS and some custom SCSS. Ensure you have `sass` installed if your project doesn't already support SCSS imports, or standard Tailwind configuration.
+```
+markdown-editor/
+├── apps/
+│   └── web/              # Next.js documentation site
+├── packages/
+│   ├── cli/              # CLI installer
+│   ├── editor/           # Core markdown editor
+│   └── eslint/           # Shared ESLint configs
+├── package.json          # Root package
+├── pnpm-workspace.yaml   # Workspace configuration
+└── turbo.json            # Turborepo configuration
+```
+
+### Available Scripts
+
+- `pnpm dev`: Start all packages in development mode
+- `pnpm build`: Build all packages
+- `pnpm lint`: Lint all packages
+- `pnpm format`: Format all code with Prettier
+
+## Features
+
+- **Rich Text Editing**: Bold, italic, underline, strikethrough, code
+- **Headings**: H1 through H6
+- **Lists**: Ordered, unordered, and task lists
+- **Links & Images**: Easy insertion and management
+- **Code Blocks**: Syntax highlighting support
+- **Text Alignment**: Left, center, right, justify
+- **Subscript & Superscript**: For mathematical and scientific notation
+- **Color & Highlighting**: Text color and background highlighting
+- **Undo/Redo**: Full history support
+- **Responsive**: Works on desktop and mobile
 
 ## Customization
 
-- **Extensions**: Add or remove Tiptap extensions in `markdown-editor.tsx`.
-- **Toolbar**: Customize the toolbar in `markdown-editor-toolbar.tsx`.
-- **Utils**: Internal utilities are located in `./lib`.
+The editor is built with Tailwind CSS and can be easily customized:
+
+- **Extensions**: Modify Tiptap extensions in `markdown-editor.tsx`
+- **Toolbar**: Customize toolbar buttons in `markdown-editor-toolbar.tsx`
+- **Styling**: Update Tailwind classes or SCSS files
+- **Themes**: Supports light and dark modes
+
+## Contributing
+
+Contributions are welcome! Please feel free to submit a Pull Request.
