@@ -1,26 +1,252 @@
-@import "tailwindcss";
+/* Load Tailwind's base, components, and utilities layers */
 
+@plugin 'tailwindcss-animate';
+@import 'tailwindcss';
+
+/* Bring in animation utilities (keyframes and classes) used by many UI kits */
+@source '../../node_modules/@heroui/theme/dist/**/*.{js,ts,jsx,tsx}';
+
+/*
+Define a custom `dark:` variant that activates when any ancestor has `.dark`.
+`&:is(.dark *)` matches the element whenever it is inside a `.dark` subtree.
+*/
+@custom-variant dark (&:is(.dark *));
+
+/*
+Point Tailwind to your TypeScript config for any extra plugin setup or options.
+Optional in Tailwind v4, but supported and useful if you maintain plugins there.
+*/
+@config '../../tailwind.config.ts';
+
+/*
+---------- Base Design Tokens (Light Theme) ----------
+Raw semantic tokens defined as CSS custom properties.
+The rest of the file maps these into Tailwind-readable theme tokens.
+Colors use OKLCH for perceptual uniformity and better contrast management.
+*/
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+    /* Typography families for `font-sans` and `font-mono` */
+    --font-sans: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    --font-mono:
+        ui-monospace, SFMono-Regular, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace;
+
+    /* Brand/action */
+    --primary: oklch(0.205 0 0);
+    --primary-foreground: oklch(0.985 0 0);
+
+    /* Secondary/neutral accents */
+    --secondary: oklch(0.97 0 0);
+    --secondary-foreground: oklch(0.205 0 0);
+
+    /* Core light theme colors (semantic) */ /* Page/app background */ /* Default text color */
+
+    /* Links */
+    --link: oklch(62.3% 0.214 259.815);
+    --link-hover: oklch(52.3% 0.214 259.815);
+
+    /* Surface colors */
+    --card: oklch(1 0 0);
+    --card-foreground: oklch(0.145 0 0);
+    --popover: oklch(1 0 0);
+    --popover-foreground: oklch(0.145 0 0);
+
+    /* Muted backgrounds and subdued text */
+    --muted: oklch(0.97 0 0);
+    --muted-foreground: oklch(0.556 0 0);
+
+    /* Accent (non-primary emphasis) */
+    --accent: oklch(0.97 0 0);
+    --accent-foreground: oklch(0.205 0 0);
+
+    /* Destructive/danger */
+    --destructive: oklch(0.577 0.245 27.325);
+
+    /* Component boundaries and focus indicators */
+    --border: oklch(0.922 0 0);
+    --input: oklch(0.922 0 0);
+    --ring: oklch(0.708 0 0);
+
+    /* Categorical chart palette (light theme) */
+    --chart-1: oklch(0.646 0.222 41.116);
+    --chart-2: oklch(0.6 0.118 184.704);
+    --chart-3: oklch(0.398 0.07 227.392);
+    --chart-4: oklch(0.828 0.189 84.429);
+    --chart-5: oklch(0.769 0.188 70.08);
+
+    /* Sidebar-specific tokens for layouts with a persistent side nav */
+    --sidebar: oklch(0.985 0 0);
+    --sidebar-foreground: oklch(0.145 0 0);
+    --sidebar-primary: oklch(0.205 0 0);
+    --sidebar-primary-foreground: oklch(0.985 0 0);
+    --sidebar-accent: oklch(0.97 0 0);
+    --sidebar-accent-foreground: oklch(0.205 0 0);
+    --sidebar-border: oklch(0.922 0 0);
+    --sidebar-ring: oklch(0.708 0 0);
+
+    /* Base radius from which smaller/larger radii are derived */
+    --radius: 0.625rem; /* 10px */
+    --background: oklch(1 0 0);
+    --foreground: oklch(0.145 0 0);
 }
 
+/*
+---------- Tailwind Theme Bridging (Fonts) ----------
+Map your raw tokens to Tailwind's theme tokens so utilities like `font-sans`
+and `font-mono` pick these up automatically.
+*/
+@theme {
+    --font-family-sans: var(--font-sans);
+    --font-family-mono: var(--font-mono);
+}
+
+/*
+---------- Tailwind Theme Bridging (Inline) ----------
+Expose your semantic tokens to Tailwind's color/radius token system.
+This enables utilities like `bg-background`, `text-foreground`, `border-border`,
+and `rounded-md` to resolve to your variables.
+*/
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+    --color-primary: var(--primary);
+    --color-primary-foreground: var(--primary-foreground);
+    --color-secondary: var(--secondary);
+    --color-secondary-foreground: var(--secondary-foreground);
+
+    /* Map semantic colors into Tailwind's --color-* token namespace */
+    --color-background: var(--background);
+    --color-foreground: var(--foreground);
+    --color-link: var(--link);
+    --color-link-hover: var(--link-hover);
+    --color-card: var(--card);
+    --color-card-foreground: var(--card-foreground);
+    --color-popover: var(--popover);
+    --color-popover-foreground: var(--popover-foreground);
+    --color-muted: var(--muted);
+    --color-muted-foreground: var(--muted-foreground);
+    --color-accent: var(--accent);
+    --color-accent-foreground: var(--accent-foreground);
+    --color-destructive: var(--destructive);
+    --color-border: var(--border);
+    --color-input: var(--input);
+    --color-ring: var(--ring);
+
+    /* Chart colors exposed with the --color- prefix for chart components */
+    --color-chart-1: var(--chart-1);
+    --color-chart-2: var(--chart-2);
+    --color-chart-3: var(--chart-3);
+    --color-chart-4: var(--chart-4);
+    --color-chart-5: var(--chart-5);
+
+    /* Sidebar tokens in the Tailwind namespace */
+    --color-sidebar: var(--sidebar);
+    --color-sidebar-foreground: var(--sidebar-foreground);
+    --color-sidebar-primary: var(--sidebar-primary);
+    --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+    --color-sidebar-accent: var(--sidebar-accent);
+    --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+    --color-sidebar-border: var(--sidebar-border);
+    --color-sidebar-ring: var(--sidebar-ring);
+
+    /* Derived corner radii for rounded-* utilities */
+    --radius-sm: calc(var(--radius) - 4px);
+    --radius-md: calc(var(--radius) - 2px);
+    --radius-lg: var(--radius);
+    --radius-xl: calc(var(--radius) + 4px);
+    --animate-accordion-down: accordion-down 0.2s ease-out;
+    --animate-accordion-up: accordion-up 0.2s ease-out;
+
+    @keyframes accordion-down {
+        from {
+            height: 0;
+        }
+        to {
+            height: var(--radix-accordion-content-height);
+        }
+    }
+
+    @keyframes accordion-up {
+        from {
+            height: var(--radix-accordion-content-height);
+        }
+        to {
+            height: 0;
+        }
+    }
+
+    --radius-2xl: calc(var(--radius) + 8px);
+
+    --radius-3xl: calc(var(--radius) + 12px);
+
+    --radius-4xl: calc(var(--radius) + 16px);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+/*
+---------- Dark Theme Overrides ----------
+When a `.dark` ancestor is present (see the custom variant above), these
+semantic tokens replace the light equivalents. All utilities that
+reference `--color-*` will automatically reflect these values.
+*/
+.dark {
+    --background: oklch(0.145 0 0);
+    --foreground: oklch(0.985 0 0);
+
+    --card: oklch(0.205 0 0);
+    --card-foreground: oklch(0.985 0 0);
+
+    --popover: oklch(0.205 0 0);
+    --popover-foreground: oklch(0.985 0 0);
+
+    --primary: oklch(0.922 0 0);
+    --primary-foreground: oklch(0.205 0 0);
+
+    --secondary: oklch(0.269 0 0);
+    --secondary-foreground: oklch(0.985 0 0);
+
+    --muted: oklch(0.269 0 0);
+    --muted-foreground: oklch(0.708 0 0);
+
+    --accent: oklch(0.269 0 0);
+    --accent-foreground: oklch(0.985 0 0);
+
+    --destructive: oklch(0.704 0.191 22.216);
+
+    /* Softer borders/inputs on dark surfaces via alpha */
+    --border: oklch(1 0 0 / 10%);
+    --input: oklch(1 0 0 / 15%);
+    --ring: oklch(0.556 0 0);
+
+    /* Dark chart palette for adequate contrast */
+    --chart-1: oklch(0.488 0.243 264.376);
+    --chart-2: oklch(0.696 0.17 162.48);
+    --chart-3: oklch(0.769 0.188 70.08);
+    --chart-4: oklch(0.627 0.265 303.9);
+    --chart-5: oklch(0.645 0.246 16.439);
+
+    /* Sidebar overrides */
+    --sidebar: oklch(0.205 0 0);
+    --sidebar-foreground: oklch(0.985 0 0);
+    --sidebar-primary: oklch(0.488 0.243 264.376);
+    --sidebar-primary-foreground: oklch(0.985 0 0);
+    --sidebar-accent: oklch(0.269 0 0);
+    --sidebar-accent-foreground: oklch(0.985 0 0);
+    --sidebar-border: oklch(1 0 0 / 10%);
+    --sidebar-ring: oklch(0.556 0 0);
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+/*
+---------- Base Layer ----------
+Global defaults applied to raw elements (before utilities/components).
+*/
+@layer base {
+    /*
+    Normalize border color and focus outline color across the app,
+    so components inherit the theme without repeating utilities.
+    */
+    * {
+        @apply border-border outline-ring/50;
+    }
+
+    /* Ensure the page background and text color align with the theme. */
+    body {
+        @apply bg-background text-foreground;
+    }
 }
