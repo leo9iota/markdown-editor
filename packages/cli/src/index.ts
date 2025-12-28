@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 import { Command } from 'commander';
 
-import { add } from './commands/add';
+import { init } from './commands/init';
 
 const program = new Command();
 
@@ -11,11 +11,11 @@ program
     .version('0.1.0');
 
 program
-    .command('add')
-    .description('Add the markdown editor component to your project')
+    .command('init')
+    .description('Initialize the markdown editor component in your project')
     .option('-p, --path <path>', 'Installation path (default: components/markdown-editor)')
     .option('-o, --overwrite', 'Overwrite existing files', false)
     .option('--no-deps', 'Skip dependency installation')
-    .action(add);
+    .action(init);
 
 program.parse();

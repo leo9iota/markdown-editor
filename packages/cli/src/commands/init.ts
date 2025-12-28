@@ -9,7 +9,7 @@ import tiged from 'tiged';
 
 import { getInstallCommand, getPackageManager } from '../utils/package-manager';
 
-const REPO_URL = 'leo9iota/markdown-editor#main';
+const REPO_URL = 'leo9iota/markdown-editor#master';
 
 // List of required dependencies for the editor
 const DEPENDENCIES = [
@@ -34,14 +34,14 @@ const DEPENDENCIES = [
     'react-colorful'
 ];
 
-interface AddOptions {
+interface InitOptions {
     path?: string;
     overwrite: boolean;
     deps: boolean;
 }
 
-export async function add(options: AddOptions) {
-    console.log(chalk.bold.cyan('\n🚀 Markdown Editor Installer\n'));
+export async function init(options: InitOptions) {
+    console.log(chalk.bold.cyan('\nMarkdown Editor Installer\n'));
 
     // 1. Configuration
     let installPath = options.path;
