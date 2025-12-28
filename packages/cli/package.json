@@ -20,9 +20,8 @@
     "keywords": [
         "markdown",
         "editor",
-        "tiptap",
-        "cli",
-        "installer"
+        "shadcn",
+        "nextjs"
     ],
     "author": "leo9iota",
     "license": "MIT",
