@@ -7,6 +7,7 @@ import ora from 'ora';
 import prompts from 'prompts';
 import tiged from 'tiged';
 
+import { getProjectInfo } from '../utils/get-project-info';
 import { getInstallCommand, getPackageManager } from '../utils/package-manager';
 
 const REPO_URL = 'leo9iota/markdown-editor#master';
@@ -47,11 +48,14 @@ export async function init(options: InitOptions) {
     let installPath = options.path;
 
     if (!installPath) {
+        const { componentsPath } = getProjectInfo();
+        const defaultPath = path.join(componentsPath, 'markdown-editor');
+
         const response = await prompts({
             type: 'text',
             name: 'path',
             message: 'Where would you like to install the component?',
-            initial: 'components/markdown-editor'
+            initial: defaultPath
         });
         installPath = response.path;
     }
@@ -61,6 +65,8 @@ export async function init(options: InitOptions) {
         process.exit(0);
     }
 
+    // Ensure we don't accidentally nest if user provides a relative path that overlaps
+    // But typically users provide relative paths.
     const targetDir = path.resolve(process.cwd(), installPath);
 
     // 2. Check overlap
@@ -195,5 +201,4 @@ export async function init(options: InitOptions) {
     console.log(
         chalk.gray(`   import { MarkdownEditor } from '@/${installPath}/markdown-editor';`)
     );
-    console.log('\nHappy coding! 🚀');
 }
