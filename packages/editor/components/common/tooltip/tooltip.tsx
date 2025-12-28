@@ -21,12 +21,12 @@ import {
   type UseFloatingReturn
 } from '@floating-ui/react';
 
-import '@/components/editor/components/common/tooltip/tooltip.scss';
+import './tooltip.scss';
 
 interface TooltipProviderProps {
   children: React.ReactNode;
   initialOpen?: boolean;
-  placement?: Placement;
+  placement?: any;
   open?: boolean;
   onOpenChange?: (open: boolean) => void;
   delay?: number;
@@ -128,7 +128,7 @@ export function Tooltip({ children, ...props }: TooltipProviderProps) {
   const tooltip = useTooltip(props);
 
   if (!props.useDelayGroup) {
-    return <TooltipContext.Provider value={tooltip}>{children}</TooltipContext.Provider>;
+    return <TooltipContext.Provider value={tooltip as any}>{children}</TooltipContext.Provider>;
   }
 
   return (
@@ -136,7 +136,7 @@ export function Tooltip({ children, ...props }: TooltipProviderProps) {
       delay={{ open: props.delay ?? 0, close: props.closeDelay ?? 0 }}
       {...(props.timeout !== undefined && { timeoutMs: props.timeout })}
     >
-      <TooltipContext.Provider value={tooltip}>{children}</TooltipContext.Provider>
+      <TooltipContext.Provider value={tooltip as any}>{children}</TooltipContext.Provider>
     </FloatingDelayGroup>
   );
 }

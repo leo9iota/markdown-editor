@@ -4,7 +4,7 @@ import * as React from 'react';
 
 import { Separator } from '../../../components/common/separator';
 
-import '@/components/editor/components/common/toolbar/toolbar.scss';
+import './toolbar.scss';
 
 import { useComposedRef } from '../../../hooks/use-composed-ref';
 import { useMenuNavigation } from '../../../hooks/use-menu-navigation';

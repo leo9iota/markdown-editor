@@ -4,7 +4,7 @@ import * as React from 'react';
 
 import { cn } from '../../../lib/cn';
 
-import '@/components/editor/components/common/card/card.scss';
+import './card.scss';
 
 const Card = React.forwardRef<HTMLDivElement, React.ComponentProps<'div'>>(
   ({ className, ...props }, ref) => {

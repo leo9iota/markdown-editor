@@ -4,8 +4,6 @@ import * as React from 'react';
 
 import type { Editor } from '@tiptap/react';
 
-// --- Hooks ---
-import { useIsMobile } from '../../../../../hooks/use-mobile';
 // --- UI Primitives ---
 import type { ButtonProps } from '../../../components/common/button';
 import { Button, ButtonGroup } from '../../../components/common/button';
@@ -21,6 +19,8 @@ import { TrashIcon } from '../../../components/icons/trash-icon';
 // --- Tiptap UI ---
 import type { UseLinkPopoverConfig } from '../../../components/ui/link-popover/index';
 import { useLinkPopover } from '../../../components/ui/link-popover/index';
+// --- Hooks ---
+import { useIsMobile } from '../../../hooks/use-mobile';
 import { useTiptapEditor } from '../../../hooks/use-tiptap-editor';
 
 export interface LinkMainProps {

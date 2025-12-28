@@ -6,7 +6,7 @@ import * as DropdownMenuPrimitive from '@radix-ui/react-dropdown-menu';
 
 import { cn } from '../../../lib/cn';
 
-import '@/components/editor/components/common/dropdown-menu/dropdown-menu.scss';
+import './dropdown-menu.scss';
 
 function DropdownMenu({ ...props }: React.ComponentProps<typeof DropdownMenuPrimitive.Root>) {
   return <DropdownMenuPrimitive.Root modal={false} {...props} />;

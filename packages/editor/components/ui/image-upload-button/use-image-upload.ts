@@ -5,9 +5,9 @@ import * as React from 'react';
 import { type Editor } from '@tiptap/react';
 import { useHotkeys } from 'react-hotkeys-hook';
 
-import { useIsMobile } from '../../../../../hooks/use-mobile';
 // --- Icons ---
 import { ImagePlusIcon } from '../../../components/icons/image-plus-icon';
+import { useIsMobile } from '../../../hooks/use-mobile';
 // --- Hooks ---
 import { useTiptapEditor } from '../../../hooks/use-tiptap-editor';
 // --- Lib ---

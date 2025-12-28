@@ -4,7 +4,6 @@ import * as React from 'react';
 
 import { type Editor } from '@tiptap/react';
 
-import { useIsMobile } from '../../../../../hooks/use-mobile';
 // --- UI Primitives ---
 import type { ButtonProps } from '../../../components/common/button';
 import { Button, ButtonGroup } from '../../../components/common/button';
@@ -26,6 +25,7 @@ import {
 } from '../../../components/ui/color-highlight-button';
 // --- Hooks ---
 import { useMenuNavigation } from '../../../hooks/use-menu-navigation';
+import { useIsMobile } from '../../../hooks/use-mobile';
 import { useTiptapEditor } from '../../../hooks/use-tiptap-editor';
 
 export interface ColorHighlightPopoverContentProps {

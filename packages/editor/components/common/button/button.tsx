@@ -8,9 +8,9 @@ import { Tooltip, TooltipContent, TooltipTrigger } from '../../../components/com
 import { cn } from '../../../lib/cn';
 import { parseShortcutKeys } from '../../../lib/utils';
 
-import '@/components/editor/components/common/button/button-colors.scss';
-import '@/components/editor/components/common/button/button-group.scss';
-import '@/components/editor/components/common/button/button.scss';
+import './button-colors.scss';
+import './button-group.scss';
+import './button.scss';
 
 import { forwardRef, Fragment, useMemo } from 'react';
 

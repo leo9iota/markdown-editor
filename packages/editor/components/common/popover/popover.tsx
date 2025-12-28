@@ -6,7 +6,7 @@ import * as PopoverPrimitive from '@radix-ui/react-popover';
 
 import { cn } from '../../../lib/cn';
 
-import '@/components/editor/components/common/popover/popover.scss';
+import './popover.scss';
 
 function Popover({ ...props }: React.ComponentProps<typeof PopoverPrimitive.Root>) {
   return <PopoverPrimitive.Root {...props} />;

@@ -2,7 +2,7 @@
 
 import * as React from 'react';
 
-import '@/components/editor/components/common/separator/separator.scss';
+import './separator.scss';
 
 import { cn } from '../../../lib/cn';
 

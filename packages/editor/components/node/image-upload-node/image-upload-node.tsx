@@ -8,7 +8,7 @@ import { NodeViewWrapper } from '@tiptap/react';
 import { Button } from '../../../components/common/button';
 import { CloseIcon } from '../../../components/icons/close-icon';
 
-import '@/components/editor/components/node/image-upload-node/image-upload-node.scss';
+import './image-upload-node.scss';
 
 import { focusNextNode, isValidPosition } from '../../../lib/utils';
 
