@@ -4,6 +4,14 @@ import path from 'node:path';
 export type PackageManager = 'npm' | 'pnpm' | 'yarn' | 'bun';
 
 export function getPackageManager(cwd: string = process.cwd()): PackageManager {
+    const userAgent = process.env.npm_config_user_agent;
+    if (userAgent) {
+        if (userAgent.startsWith('pnpm')) return 'pnpm';
+        if (userAgent.startsWith('yarn')) return 'yarn';
+        if (userAgent.startsWith('bun')) return 'bun';
+        if (userAgent.startsWith('npm')) return 'npm';
+    }
+
     if (fs.existsSync(path.join(cwd, 'pnpm-lock.yaml'))) return 'pnpm';
     if (fs.existsSync(path.join(cwd, 'bun.lockb'))) return 'bun';
     if (fs.existsSync(path.join(cwd, 'yarn.lock'))) return 'yarn';
