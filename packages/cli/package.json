@@ -1,6 +1,6 @@
 {
     "name": "@leo9iota/markdown-editor-cli",
-    "version": "0.1.0",
+    "version": "0.1.1",
     "description": "CLI to install the Modular Markdown Editor",
     "bin": {
         "markdown-editor-cli": "dist/index.js"
